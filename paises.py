@@ -44,7 +44,7 @@ def mostrar_populacao(nome_do_pais):
 
         if lista_de_paises:
             for pais in lista_de_paises:
-                print("{}: {}".format(pais['name']['common'], pais['population']))
+                print("{}: {} habitantes".format(pais['name']['common'], pais['population']))
     else:
         print("País não encontrado.")
 #________________________________________________
@@ -64,6 +64,15 @@ def mostrar_moedas(nome_do_pais):
         print("País não encontrado.")
 #________________________________________________
 
+def ler_nome_do_pais():
+    try:
+        nome_do_pais = sys.argv[2]
+        return nome_do_pais
+    except:
+        print("Erro: Você precisa informar o nome do país.")
+        return None
+
+
 if __name__ == "__main__":
 
     if len(sys.argv) == 1:
@@ -74,6 +83,15 @@ if __name__ == "__main__":
         argumento1 = sys.argv[1]
 
         if argumento1 == "contagem":
-            contagem_de_paises()
+           numero_de_listar_paises = contagem_de_paises()
+           print("Existem {} países no mundo todo.".format(numero_de_paises))
+        elif argumento1 == "moeda":
+            pais = ler_nome_do_pais()
+            if pais:
+                mostrar_moedas(pais)
+        elif argumento1 == "populacao":
+            pais = ler_nome_do_pais()
+            if pais:
+                mostrar_populacao(pais)
         else:
             print("Argumento inválido")
