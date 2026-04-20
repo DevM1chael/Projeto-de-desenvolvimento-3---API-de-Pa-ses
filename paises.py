@@ -83,7 +83,7 @@ if __name__ == "__main__":
         argumento1 = sys.argv[1]
 
         if argumento1 == "contagem":
-           numero_de_listar_paises = contagem_de_paises()
+           numero_de_paises = contagem_de_paises()
            print("Existem {} países no mundo todo.".format(numero_de_paises))
         elif argumento1 == "moeda":
             pais = ler_nome_do_pais()
