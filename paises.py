@@ -1,4 +1,6 @@
+from decimal import InvalidOperation
 import json
+import sys
 
 import requests
 #________________________________________________
@@ -28,8 +30,11 @@ def listar_paises(lista_de_paises):
         print(pais["name"]["common"])
 #________________________________________________
 
-def contagem_de_paises(lista_de_paises):
-    return len(lista_de_paises)
+def contagem_de_paises():
+    resposta = requisicao(url_all)
+    if resposta:
+        lista_de_paises = parsing(resposta)
+        return len(lista_de_paises)
 #________________________________________________
 
 def mostrar_populacao(nome_do_pais):
@@ -60,4 +65,15 @@ def mostrar_moedas(nome_do_pais):
 #________________________________________________
 
 if __name__ == "__main__":
-    mostrar_moedas("Brazil")
+
+    if len(sys.argv) == 1:
+        print("Bem vindo ao sistema de países ##")
+        print("Uso: python paises.py <acao> <nome do país>")
+        print("Ações disponíveis: contagem, moeda, populacao")
+    else:
+        argumento1 = sys.argv[1]
+
+        if argumento1 == "contagem":
+            contagem_de_paises()
+        else:
+            print("Argumento inválido")
